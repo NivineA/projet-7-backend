@@ -1,0 +1,15 @@
+venv-7
+data
+notebook/train_final.csv
+notebook/test_final.csv
+notebook/data_to_train.csv
+notebook/data_to_test.csv
+media/valeurs manquantes 1.png
+model/best_lgbm.joblib
+notebook/beta.PNG
+notebook/F_score_beta.PNG
+notebook/F_score.png
+notebook/requirements.txt
+notebook/valeurs manquantes 1.png
+notebook/smote.PNG
+notebook/recall_precision.PNG
