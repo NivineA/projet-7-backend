@@ -9,10 +9,11 @@ import shap
 
 app = Flask(__name__)
 # Load the model
-model = joblib.load('notebook/best_lgbm.joblib')
-data_test=pd.read_csv('notebook/data_to_test.csv')
-data_train=pd.read_csv('notebook/data_to_train.csv')
-data_final_test=pd.read_csv('notebook/test_final.csv')
+model = joblib.load('notebook//best_lgbm.joblib')
+Knn = joblib.load('notebook\knn_model.joblib')
+data_test=pd.read_csv('notebook//data_to_test.csv.zip')
+data_train=pd.read_csv('notebook//data_to_train_api.csv')
+data_final_test=pd.read_csv('notebook//test_final.csv.zip')
 # On crée la liste des ID clients qui nous servira dans l'API
 id_client = data_test["SK_ID_CURR"][:50].values
 id_client = pd.DataFrame(id_client)
@@ -139,9 +140,8 @@ def load_voisins():
     new_data_train=data_train.drop(['Unnamed: 0', 'TARGET'], axis=1)
     data_client = new_data[new_data["SK_ID_CURR"] == float(id)]
     print(data_test.columns)
-    knn = NearestNeighbors(n_neighbors=10, algorithm='auto').fit(new_data_train)
 
-    distances, indices = knn.kneighbors(data_client)
+    distances, indices = Knn.kneighbors(data_client)
 
     df_voisins = data_train.iloc[indices[0], :]
     
