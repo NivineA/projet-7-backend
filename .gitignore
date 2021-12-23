@@ -1,9 +1,7 @@
 venv-7
 data
 notebook/train_final.csv
-notebook/test_final.csv
 notebook/data_to_train.csv
-notebook/data_to_test.csv
 media/valeurs manquantes 1.png
 model/best_lgbm.joblib
 notebook/beta.PNG
@@ -13,3 +11,7 @@ notebook/valeurs manquantes 1.png
 notebook/smote.PNG
 notebook/recall_precision.PNG
 venv_7
+notebook/data_to_test.csv
+notebook/data_to_train.csv.zip
+notebook/test_final.csv
+notebook/train_final.csv.zip
