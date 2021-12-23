@@ -15,3 +15,9 @@ notebook/data_to_test.csv
 notebook/data_to_train.csv.zip
 notebook/test_final.csv
 notebook/train_final.csv.zip
+notebook/catboost_info/catboost_training.json
+notebook/catboost_info/learn_error.tsv
+notebook/catboost_info/time_left.tsv
+notebook/catboost_info/learn/events.out.tfevents
+rapport.docx
+
