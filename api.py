@@ -9,10 +9,10 @@ import shap
 
 app = Flask(__name__)
 # Load the model
-model = joblib.load('notebook\\best_lgbm.joblib')
-data_test=pd.read_csv('notebook\\data_to_test.csv')
-data_train=pd.read_csv('notebook\\data_to_train.csv')
-data_final_test=pd.read_csv('notebook\\test_final.csv')
+model = joblib.load(pathlib.Path('notebook\\best_lgbm.joblib'))
+data_test=pd.read_csv(pathlib.Path('notebook\\data_to_test.csv'))
+data_train=pd.read_csv(pathlib.Path('notebook\\data_to_train.csv'))
+data_final_test=pd.read_csv(pathlib.Path('notebook\\test_final.csv'))
 # On crée la liste des ID clients qui nous servira dans l'API
 id_client = data_test["SK_ID_CURR"][:50].values
 id_client = pd.DataFrame(id_client)
