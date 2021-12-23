@@ -23,7 +23,7 @@ def home():
 @app.route("/load_data", methods=["GET"])
 def load_data():
     
-    return id_client.to_json(orient='values')
+    return   jsonify ({"response": "these are the id _clients loaded:" + id_client.to_json(orient='values')})
 
 
 
@@ -41,7 +41,7 @@ def class_target():
 
     df_target = data_train["TARGET"].value_counts()
 
-    return df_target.to_json(orient='values')
+    return jsonify ({"response": "these are the frequency of the targets data" + df_target.to_json(orient='values')})
 
 @app.route("/infos_client", methods=["GET"])
 def infos_client():
@@ -64,7 +64,7 @@ def infos_client():
     
     response = json.loads(data_client.to_json(orient='index'))
 
-    return jsonify (response)
+    return jsonify( response)
 
 # Calcul des ages de la population pour le graphique
 # situant l'age du client
@@ -72,13 +72,13 @@ def infos_client():
 def load_age_population():
     
     df_age = round((data_train["DAYS_BIRTH"] / -365), 2)
-    return df_age.to_json(orient='values')
+    return ({"response": "l'age des clients:" + df_age.to_json(orient='values')})
 
 @app.route("/load_revenus/population", methods=["GET"])
 def load_revenus_population():
     
     df_revenus = data_train["AMT_INCOME_TOTAL"] 
-    return df_revenus.to_json(orient='values')
+    return ({"response": "Revenus des clients:" + df_revenus.to_json(orient='values')})
 
 @app.route("/predict", methods=["GET"])
 def predict():

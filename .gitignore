@@ -9,7 +9,7 @@ model/best_lgbm.joblib
 notebook/beta.PNG
 notebook/F_score_beta.PNG
 notebook/F_score.png
-notebook/requirements.txt
 notebook/valeurs manquantes 1.png
 notebook/smote.PNG
 notebook/recall_precision.PNG
+venv_7
