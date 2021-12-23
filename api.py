@@ -1,3 +1,4 @@
+import pathlib
 import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify, render_template
@@ -8,10 +9,10 @@ import shap
 
 app = Flask(__name__)
 # Load the model
-model = joblib.load('C:\\Users\\nivin\\Desktop\\formation\\projet\\Projet 7\\Projet_7_backend\\notebook\\best_lgbm.joblib')
-data_test=pd.read_csv('C:\\Users\\nivin\\Desktop\\formation\\projet\\Projet 7\\Projet_7_backend\\notebook\\data_to_test.csv')
-data_train=pd.read_csv('C:\\Users\\nivin\\Desktop\\formation\\projet\\Projet 7\\Projet_7_backend\\notebook\\data_to_train.csv')
-data_final_test=pd.read_csv('C:\\Users\\nivin\\Desktop\\formation\\projet\\Projet 7\\Projet_7_backend\\notebook\\test_final.csv')
+model = joblib.load('notebook\\best_lgbm.joblib')
+data_test=pd.read_csv('notebook\\data_to_test.csv')
+data_train=pd.read_csv('notebook\\data_to_train.csv')
+data_final_test=pd.read_csv('notebook\\test_final.csv')
 # On crée la liste des ID clients qui nous servira dans l'API
 id_client = data_test["SK_ID_CURR"][:50].values
 id_client = pd.DataFrame(id_client)
