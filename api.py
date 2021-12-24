@@ -11,9 +11,9 @@ app = Flask(__name__)
 # Load the model
 model = joblib.load('notebook//best_lgbm.joblib')
 Knn = joblib.load('notebook\knn_model.joblib')
-data_test=pd.read_csv('notebook//data_to_test_sample.csv')
+data_test=pd.read_csv('notebook//data_to_test_sample.csv.zip')
 data_train=pd.read_csv('notebook//data_to_train_api.csv')
-data_final_test=pd.read_csv('notebook//test_final_sample.csv')
+data_final_test=pd.read_csv('notebook//test_final_sample.csv.zip')
 # On crée la liste des ID clients qui nous servira dans l'API
 id_client = data_test["SK_ID_CURR"][:50].values
 id_client = pd.DataFrame(id_client)
