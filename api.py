@@ -2,15 +2,15 @@ import pathlib
 import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify, render_template
-import joblib
+from joblib import dump, load
 import json
 from sklearn.neighbors import NearestNeighbors
 import shap
 
 app = Flask(__name__)
 # Load the model
-model = joblib.load('notebook//best_lgbm.joblib')
-Knn = joblib.load('notebook\knn_model.joblib')
+model = load('notebook//best_lgbm.joblib')
+Knn = load('notebook\knn_model.joblib')
 data_test=pd.read_csv('notebook//data_to_test_sample.csv.zip')
 data_train=pd.read_csv('notebook//data_to_train_api.csv')
 data_final_test=pd.read_csv('notebook//test_final_sample.csv.zip')
