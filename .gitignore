@@ -25,3 +25,15 @@ rapport.docx
 notebook/train_final_sample.csv.zip
 notebook/data_to_train_sample.csv.zip
 notebook/test_final_sample.csv
+media/Beta.png
+media/class_target.png
+media/Fbeta.png
+media/F_score.png
+media/precision.png
+media/Recall.png
+media/smonte.png
+media/target_class.png
+rapport.docx
+notebook/requirements.txt
+notebook/requirements.txt
+__pycache__/api.cpython-38.pyc
