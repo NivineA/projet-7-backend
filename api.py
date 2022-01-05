@@ -160,7 +160,7 @@ def predict():
 def load_data_predict():
     score=[]
     df=pd.DataFrame()
-    id_client = data_test_initial["SK_ID_CURR"][:500].values
+    id_client = data_test_initial["SK_ID_CURR"][:300].values
     id_client = pd.DataFrame(id_client)
     for id in id_client.loc[:,0]:
         new_data=data_final_test.drop(['Unnamed: 0', 'SK_ID_CURR'], axis=1)
