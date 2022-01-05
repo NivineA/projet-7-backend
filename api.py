@@ -11,9 +11,39 @@ app = Flask(__name__)
 model = joblib.load('notebook//best_lgbm.joblib')
 Knn = joblib.load('notebook//knn_model.joblib')
 data_test_initial=pd.read_parquet('notebook/data_test_initial.parquet.gzip')
-data_test=pd.read_csv('notebook//data_to_test_sample.csv.zip')
+data_test=pd.read_csv('notebook/data_to_test_sample.csv.zip')
 data_train=pd.read_csv('notebook//data_to_train_api.csv')
 data_final_test=pd.read_csv('notebook//test_final_sample.csv.zip')
+
+def convert_types(df, print_info = False):
+    original_memory = df.memory_usage().sum()
+    # Iterate through each column
+    for c in df: 
+        # Convert ids and booleans to integers
+        if ('SK_ID' in c):
+            df[c] = df[c].fillna(0).astype(np.int32)    
+        # Convert objects to category
+        elif (df[c].dtype == 'object') and (df[c].nunique() < df.shape[0]):
+            df[c] = df[c].astype('category')
+        # Booleans mapped to integers
+        elif list(df[c].unique()) == [1, 0]:
+            df[c] = df[c].astype(bool)
+        # Float64 to float32
+        elif df[c].dtype == float:
+            df[c] = df[c].astype(np.float32)
+        # Int64 to int32
+        elif df[c].dtype == int:
+            df[c] = df[c].astype(np.int32)
+    new_memory = df.memory_usage().sum()
+    if print_info:
+        print(f'Original Memory Usage: {round(original_memory / 1e9, 2)} gb.')
+        print(f'New Memory Usage: {round(new_memory / 1e9, 2)} gb.')
+    return df
+
+data_test_initial=convert_types(data_test_initial, print_info=True)
+data_final_test=convert_types(data_final_test, print_info=True)
+data_test=convert_types(data_test, print_info=True)
+
 # On crée la liste des ID clients qui nous servira dans l'API
 id_client = data_test_initial["SK_ID_CURR"][:1000].values
 id_client = pd.DataFrame(id_client)
@@ -173,7 +203,9 @@ def load_data_predict():
         data_client['score']=prediction[1]
         df = df.append(data_client, ignore_index=True)
     df["SK_ID_CURR"]=id_client.loc[:,0]
+    df=convert_types(df, print_info=True)
     test=pd.merge(df, data_test_initial.iloc[:100,:], on=['SK_ID_CURR'], how='inner')
+    test=convert_types(test,print_info=True)
     response = json.loads(test.to_json(orient='index'))
     return jsonify( response)
 
