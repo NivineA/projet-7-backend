@@ -160,7 +160,7 @@ def predict():
 def load_data_predict():
     score=[]
     df=pd.DataFrame()
-    id_client = data_test_initial["SK_ID_CURR"][:300].values
+    id_client = data_test_initial["SK_ID_CURR"][:100].values
     id_client = pd.DataFrame(id_client)
     for id in id_client.loc[:,0]:
         new_data=data_final_test.drop(['Unnamed: 0', 'SK_ID_CURR'], axis=1)
@@ -173,7 +173,7 @@ def load_data_predict():
         data_client['score']=prediction[1]
         df = df.append(data_client, ignore_index=True)
     df["SK_ID_CURR"]=id_client.loc[:,0]
-    test=pd.merge(df, data_test_initial, on=['SK_ID_CURR'], how='inner')
+    test=pd.merge(df, data_test_initial.iloc[:100,:], on=['SK_ID_CURR'], how='inner')
     response = json.loads(test.to_json(orient='index'))
     return jsonify( response)
 
